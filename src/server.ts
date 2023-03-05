@@ -1,17 +1,22 @@
-import fastify from "fastify";
+import cors from "cors";
+import express from "express";
 import { PrismaClient } from "@prisma/client";
 
-const app = fastify();
+const app = express();
+const PORT = process.env.PORT || 5000;
 const prisma = new PrismaClient();
 
-app.get("/todolist", async () => {
+app.use(cors());
+app.use(express.json());
+
+app.get("/todolist", async (request, response) => {
   const toDoList = await prisma.toDoList.findMany();
 
-  return { toDoList };
+  return response.status(200).send({ toDoList });
 });
 
-app.post("/todolist", async (request, reply) => {
-  const { name, status, editable } = request.body;
+app.post("/todolist", async (req, response) => {
+  const { name, status, editable } = req.body;
 
   await prisma.toDoList.create({
     data: {
@@ -21,14 +26,9 @@ app.post("/todolist", async (request, reply) => {
     },
   });
 
-  return reply.status(201).send();
+  return response.status(201).send();
 });
 
-app
-  .listen({
-    host: "0.0.0.0",
-    port: process.env.PORT ? Number(process.env.PORT) : 5000,
-  })
-  .then(() => {
-    console.log("Servidor rodando...");
-  });
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
