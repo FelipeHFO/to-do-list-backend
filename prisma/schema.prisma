@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ToDoList {
+  id String @id @default(cuid())
+  name String
+  status Boolean @default(false)
+  editable Boolean @default(false)
+  createdAt DateTime @default(now())
+}
