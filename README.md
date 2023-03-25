@@ -15,9 +15,6 @@ Esta aplicação está hospedada pela (Render)[https://dashboard.render.com/], j
 - Cria o arquivo tsconfig.json
   `npx tsc --init`
 
-- Adicionado o fastify
-  `npm i fastify`
-
 - Adicionando o prisma e o prisma cli
   `npm i prisma -D`
   `npm i @prisma/client`
@@ -30,3 +27,8 @@ Esta aplicação está hospedada pela (Render)[https://dashboard.render.com/], j
 
 - Abrir interface do Prisma
   `npx prisma studio`
+
+  # Features
+
+  - Terminar o CRUD
+  - Tratar com try catch os métodos
