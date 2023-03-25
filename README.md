@@ -28,6 +28,9 @@ Esta aplicação está hospedada pela (Render)[https://dashboard.render.com/], j
 - Abrir interface do Prisma
   `npx prisma studio`
 
+- Instalando um loader html para poder servir uma página html
+  `npm install --save-dev html-loader`
+
   # Features
 
   - Terminar o CRUD
